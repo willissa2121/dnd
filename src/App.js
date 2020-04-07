@@ -23,7 +23,6 @@ class App extends React.Component {
     axios
       .post("https://pure-mountain-12737.herokuapp.com/sendData", { val, roller })
       .then((res) => {
-        console.log(res);
         let rollerArray = [];
         let valArray = [];
         for (var i = res.data.length - 1; i >= 0; i--) {

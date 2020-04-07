@@ -12,17 +12,20 @@ class App extends React.Component {
     this.state = { valArray: [], rollerArray: [] };
   }
 
-  componentDidMount(){
-    this.getRandom()
+  componentDidMount() {
+    this.getRandom();
   }
 
   getRandom = async (val = 0, roller = "seeding") => {
+    //const babyObj = { roller, randomVal };
     let randomVal = Math.floor(Math.random() * val) + 1;
-
-    const babyObj = { roller, randomVal };
     axios
-      .post("https://pure-mountain-12737.herokuapp.com/sendData", { val, roller })
+      .post("https://pure-mountain-12737.herokuapp.com/sendData", {
+        val: randomVal,
+        roller,
+      })
       .then((res) => {
+        
         let rollerArray = [];
         let valArray = [];
         for (var i = res.data.length - 1; i >= 0; i--) {

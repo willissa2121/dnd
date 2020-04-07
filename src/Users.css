@@ -1,0 +1,5 @@
+#parent-user-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

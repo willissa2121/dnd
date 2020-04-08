@@ -14,23 +14,25 @@ class App extends React.Component {
     this.state = { valArray: [], rollerArray: [] };
   }
 
-  componentDidMount(){
-    this.refreshFeed()
+  componentDidMount() {
     setInterval(() => {
-      this.refreshFeed()
-    }, 5000);
+      this.refreshFeed();
+    }, 2000);
   }
 
   refreshFeed = () => {
     axios
-      .post("https://pure-mountain-12737.herokuapp.com/refreshData")
+      .post("https://secure-sea-78493.herokuapp.com/refreshData")
       .then((res) => {
         let rollerArray = [];
         let valArray = [];
-        console.log(res)
+        console.log(res);
         for (var i = res.data.length - 1; i >= 0; i--) {
-          rollerArray.push(res.data[i].roller);
-          valArray.push(res.data[i].val);
+          if (res.data[i].roller === "_") {
+          } else {
+            rollerArray.push(res.data[i].roller);
+            valArray.push(res.data[i].val);
+          }
         }
         console.log(valArray, rollerArray);
 
@@ -45,7 +47,7 @@ class App extends React.Component {
     //const babyObj = { roller, randomVal };
     let randomVal = Math.floor(Math.random() * val) + 1;
     axios
-      .post("https://pure-mountain-12737.herokuapp.com/sendData", {
+      .post("https://secure-sea-78493.herokuapp.com/sendData", {
         val: randomVal,
         roller,
       })
@@ -53,8 +55,11 @@ class App extends React.Component {
         let rollerArray = [];
         let valArray = [];
         for (var i = res.data.length - 1; i >= 0; i--) {
-          rollerArray.push(res.data[i].roller);
-          valArray.push(res.data[i].val);
+          if (res.data[i].roller === "_") {
+          } else {
+            rollerArray.push(res.data[i].roller);
+            valArray.push(res.data[i].val);
+          }
         }
         console.log(valArray, rollerArray);
 

@@ -17,7 +17,7 @@ class App extends React.Component {
     this.refreshFeed();
     setInterval(() => {
       this.refreshFeed();
-    }, 2000);
+    }, 1000);
   }
 
   refreshFeed = () => {

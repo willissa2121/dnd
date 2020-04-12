@@ -4,17 +4,17 @@ import "./App.css";
 import Header from "./Header";
 import Users from "./Users.js";
 import axios from "axios";
-import schedule from "node-schedule";
-const users = ["Leeshin Liskyn", "Rone Dahl", "IWILLNUT", "HercuLATS"];
+const users = [{userName:"Leeshin Liskyn", picture:"dragon"}, {userName:"Rone Dahl", picture:"necromancer"}, {userName:"IWILLNUT", picture:"midget"}, {userName:"HercuLATS", picture:"cat"}];
 const cont = true;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { valArray: [], rollerArray: [] };
+    this.state = { valArray: [], rollerArray: [], recentRoll: {} };
   }
 
   componentDidMount() {
+    this.refreshFeed();
     setInterval(() => {
       this.refreshFeed();
     }, 2000);
@@ -26,7 +26,7 @@ class App extends React.Component {
       .then((res) => {
         let rollerArray = [];
         let valArray = [];
-        console.log(res);
+        //console.log(res);
         for (var i = res.data.length - 1; i >= 0; i--) {
           if (res.data[i].roller === "_") {
           } else {
@@ -34,11 +34,12 @@ class App extends React.Component {
             valArray.push(res.data[i].val);
           }
         }
-        console.log(valArray, rollerArray);
-
+        //console.log(valArray, rollerArray);
+        let recentRoll = { roller: rollerArray[0], val: valArray[0] };
         this.setState((prevState) => ({
           valArray,
           rollerArray,
+          recentRoll
         }));
       });
   };
@@ -61,11 +62,13 @@ class App extends React.Component {
             valArray.push(res.data[i].val);
           }
         }
+        let recentRoll = { roller: rollerArray[0], val: valArray[0] };
         console.log(valArray, rollerArray);
 
         this.setState((prevState) => ({
           valArray,
           rollerArray,
+          recentRoll
         }));
       });
   };
@@ -73,11 +76,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header></Header>
-        <div className="container">
-          <div id="contains-users">
+        <Header recentRoll={this.state.recentRoll}></Header>
+        <div className="container-fluid">
+          <div className="row" id="contains-users">
             {users.map((user) => (
-              <Users random={this.getRandom} user={user}></Users>
+              <div className="col-md-3">
+                <Users random={this.getRandom} image={user.picture} user={user.userName}></Users>
+              </div>
             ))}
           </div>
           <div>

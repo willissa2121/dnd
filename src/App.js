@@ -4,13 +4,22 @@ import "./App.css";
 import Header from "./Header";
 import Users from "./Users.js";
 import axios from "axios";
-const users = [{userName:"Leeshin Liskyn", picture:"dragon"}, {userName:"Rone Dahl", picture:"necromancer"}, {userName:"IWILLNUT", picture:"midget"}, {userName:"HercuLATS", picture:"cat"}];
-const cont = true;
+const users = [
+  { userName: "Leeshin Liskyn", picture: "dragon" },
+  { userName: "Rone Dahl", picture: "necromancer" },
+  { userName: "IWILLNUT", picture: "midget" },
+  { userName: "HercuLATS", picture: "cat" },
+];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { valArray: [], rollerArray: [], recentRoll: {} };
+    this.state = {
+      valArray: [],
+      rollerArray: [],
+      recentRoll: {},
+      updateRoller: true,
+    };
   }
 
   componentDidMount() {
@@ -26,7 +35,6 @@ class App extends React.Component {
       .then((res) => {
         let rollerArray = [];
         let valArray = [];
-        //console.log(res);
         for (var i = res.data.length - 1; i >= 0; i--) {
           if (res.data[i].roller === "_") {
           } else {
@@ -34,12 +42,29 @@ class App extends React.Component {
             valArray.push(res.data[i].val);
           }
         }
-        //console.log(valArray, rollerArray);
         let recentRoll = { roller: rollerArray[0], val: valArray[0] };
+        let currentState = {
+          roller: this.state.recentRoll.roller,
+          val: this.state.recentRoll.val,
+        };
+
+        console.log(
+          currentState.roller === recentRoll.roller &&
+            currentState.val === recentRoll.val
+        );
+        if (
+          currentState.roller === recentRoll.roller &&
+          currentState.val === recentRoll.val
+        ) {
+          this.setState({ updateRoller: false });
+        } else {
+          this.setState({ updateRoller: true });
+        }
+
         this.setState((prevState) => ({
           valArray,
           rollerArray,
-          recentRoll
+          recentRoll,
         }));
       });
   };
@@ -62,13 +87,12 @@ class App extends React.Component {
             valArray.push(res.data[i].val);
           }
         }
-        let recentRoll = { roller: rollerArray[0], val: valArray[0] };
-        console.log(valArray, rollerArray);
+        //let recentRoll = { roller: rollerArray[0], val: valArray[0] };
 
         this.setState((prevState) => ({
           valArray,
           rollerArray,
-          recentRoll
+          //recentRoll,
         }));
       });
   };
@@ -76,12 +100,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header recentRoll={this.state.recentRoll}></Header>
+        <Header
+          update={this.state.updateRoller}
+          recentRoll={this.state.recentRoll}
+        ></Header>
         <div className="container-fluid">
           <div className="row" id="contains-users">
             {users.map((user) => (
               <div className="col-md-3">
-                <Users random={this.getRandom} image={user.picture} user={user.userName}></Users>
+                <Users
+                  random={this.getRandom}
+                  image={user.picture}
+                  user={user.userName}
+                ></Users>
               </div>
             ))}
           </div>

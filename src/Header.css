@@ -2,3 +2,15 @@
   padding:0;
   height:25vh;
 }
+
+#updateText{
+  animation:blinkingText 1.2s;
+ 
+}
+@keyframes blinkingText{
+  0%{     color: green;    }
+  49%{    color: green; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: green;    }
+}

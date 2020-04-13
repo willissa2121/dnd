@@ -1,26 +1,27 @@
 {
   "files": {
     "main.css": "/dnd/static/css/main.f640158a.chunk.css",
-    "main.js": "/dnd/static/js/main.c1362206.chunk.js",
-    "main.js.map": "/dnd/static/js/main.c1362206.chunk.js.map",
+    "main.js": "/dnd/static/js/main.d8e3b923.chunk.js",
+    "main.js.map": "/dnd/static/js/main.d8e3b923.chunk.js.map",
     "runtime-main.js": "/dnd/static/js/runtime-main.b46cc71e.js",
     "runtime-main.js.map": "/dnd/static/js/runtime-main.b46cc71e.js.map",
-    "static/js/2.a1877b81.chunk.js": "/dnd/static/js/2.a1877b81.chunk.js",
-    "static/js/2.a1877b81.chunk.js.map": "/dnd/static/js/2.a1877b81.chunk.js.map",
+    "static/js/2.f9036b81.chunk.js": "/dnd/static/js/2.f9036b81.chunk.js",
+    "static/js/2.f9036b81.chunk.js.map": "/dnd/static/js/2.f9036b81.chunk.js.map",
     "index.html": "/dnd/index.html",
-    "precache-manifest.5231df30d15c8da79c91ca448b90b42d.js": "/dnd/precache-manifest.5231df30d15c8da79c91ca448b90b42d.js",
+    "precache-manifest.c933b6a05572fcfb4033cba9b5a2ca47.js": "/dnd/precache-manifest.c933b6a05572fcfb4033cba9b5a2ca47.js",
     "service-worker.js": "/dnd/service-worker.js",
     "static/css/main.f640158a.chunk.css.map": "/dnd/static/css/main.f640158a.chunk.css.map",
-    "static/js/2.a1877b81.chunk.js.LICENSE.txt": "/dnd/static/js/2.a1877b81.chunk.js.LICENSE.txt",
+    "static/js/2.f9036b81.chunk.js.LICENSE.txt": "/dnd/static/js/2.f9036b81.chunk.js.LICENSE.txt",
     "static/media/cat.png": "/dnd/static/media/cat.46703135.png",
+    "static/media/diceSound.mp3": "/dnd/static/media/diceSound.afd53a36.mp3",
     "static/media/dragon.png": "/dnd/static/media/dragon.19c2bc27.png",
     "static/media/midget.png": "/dnd/static/media/midget.e93a16f5.png",
     "static/media/necromancer.png": "/dnd/static/media/necromancer.ae6ce689.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b46cc71e.js",
-    "static/js/2.a1877b81.chunk.js",
+    "static/js/2.f9036b81.chunk.js",
     "static/css/main.f640158a.chunk.css",
-    "static/js/main.c1362206.chunk.js"
+    "static/js/main.d8e3b923.chunk.js"
   ]
 }

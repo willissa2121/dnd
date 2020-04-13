@@ -27,7 +27,7 @@ class App extends React.Component {
     this.refreshFeed();
     setInterval(() => {
       this.refreshFeed();
-    }, 1000);
+    }, 500);
   }
 
   handleData = (res, saveRecent) => {

@@ -15,6 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rollDataArray: [],
       valArray: [],
       rollerArray: [],
       recentRoll: {},
@@ -29,48 +30,50 @@ class App extends React.Component {
     }, 1000);
   }
 
+  handleData = (res, saveRecent) => {
+    let rollDataArray = [];
+    for (var i = res.data.length - 1; i >= 0; i--) {
+      const { roller, val, createdAt } = res.data[i];
+      let currentEntryObject = {
+        roller,
+        val,
+        createdAt,
+      };
+      rollDataArray.push(currentEntryObject);
+    }
+    const { roller, val, createdAt } = rollDataArray[0];
+    let recentRoll = {
+      roller,
+      val,
+      createdAt,
+    };
+
+    if (recentRoll.createdAt === this.state.recentRoll.createdAt) {
+      this.setState({ updateRoller: false });
+    } else {
+      this.setState({ updateRoller: true });
+    }
+    if (saveRecent) {
+      this.setState((prevState) => ({
+        rollDataArray,
+        recentRoll,
+      }));
+    } else {
+      this.setState((prevState) => ({
+        rollDataArray,
+      }));
+    }
+  };
+
   refreshFeed = () => {
     axios
       .post("https://secure-sea-78493.herokuapp.com/refreshData")
       .then((res) => {
-        let rollerArray = [];
-        let valArray = [];
-        for (var i = res.data.length - 1; i >= 0; i--) {
-          if (res.data[i].roller === "_") {
-          } else {
-            rollerArray.push(res.data[i].roller);
-            valArray.push(res.data[i].val);
-          }
-        }
-        let recentRoll = { roller: rollerArray[0], val: valArray[0] };
-        let currentState = {
-          roller: this.state.recentRoll.roller,
-          val: this.state.recentRoll.val,
-        };
-
-        console.log(
-          currentState.roller === recentRoll.roller &&
-            currentState.val === recentRoll.val
-        );
-        if (
-          currentState.roller === recentRoll.roller &&
-          currentState.val === recentRoll.val
-        ) {
-          this.setState({ updateRoller: false });
-        } else {
-          this.setState({ updateRoller: true });
-        }
-
-        this.setState((prevState) => ({
-          valArray,
-          rollerArray,
-          recentRoll,
-        }));
+        this.handleData(res, true);
       });
   };
 
-  getRandom = async (val = 0, roller = "_") => {
-    //const babyObj = { roller, randomVal };
+  getRandom = async (val, roller) => {
     let randomVal = Math.floor(Math.random() * val) + 1;
     axios
       .post("https://secure-sea-78493.herokuapp.com/sendData", {
@@ -78,22 +81,7 @@ class App extends React.Component {
         roller,
       })
       .then((res) => {
-        let rollerArray = [];
-        let valArray = [];
-        for (var i = res.data.length - 1; i >= 0; i--) {
-          if (res.data[i].roller === "_") {
-          } else {
-            rollerArray.push(res.data[i].roller);
-            valArray.push(res.data[i].val);
-          }
-        }
-        //let recentRoll = { roller: rollerArray[0], val: valArray[0] };
-
-        this.setState((prevState) => ({
-          valArray,
-          rollerArray,
-          //recentRoll,
-        }));
+        this.handleData(res, false);
       });
   };
 
@@ -109,20 +97,11 @@ class App extends React.Component {
             {users.map((user) => (
               <div className="col-md-3">
                 <Users
+                  data={this.state.rollDataArray}
                   random={this.getRandom}
                   image={user.picture}
                   user={user.userName}
                 ></Users>
-              </div>
-            ))}
-          </div>
-          <div>
-            {this.state.rollerArray.map((roller, iteration) => (
-              <div className="row justify-content-center">
-                <p className="col-md-12" id="roll-history">
-                  <p id="rollVal">{roller}: </p>
-                  <p id="rollRoller"> {this.state.valArray[iteration]}</p>
-                </p>
               </div>
             ))}
           </div>

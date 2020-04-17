@@ -22,7 +22,7 @@ export default function Users(props) {
       <img
         alt="user-pic"
         id="parent-user-group"
-        src={require(`./public/images/${props.image}.png`)}
+        src={require(`../public/images/${props.image}.png`)}
       />
       {userDataArray.map((data) => (
         <div className="row justify-content-center">

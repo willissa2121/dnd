@@ -5,7 +5,7 @@ const colorVal = ["danger", "warning", "success", "primary", "info"];
 
 export default function Dice(props) {
 
-  const audio = new Audio(require('./public/sounds/diceSound.mp3'))
+  const audio = new Audio(require('../public/sounds/diceSound.mp3'))
   return (
     <div>
       {diceVal.map((val, iteration) => (

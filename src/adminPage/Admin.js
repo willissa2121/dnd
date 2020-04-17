@@ -4,7 +4,7 @@ import config from "../config/config";
 const enemyList = ["demon", "devil", "boss"];
 
 const sendEnemy = (enemy) => {
-  axios.post(`${config.prod}/sendEnemy`, { enemy }).then((res) => {
+  axios.post(`https://dnd-server-api.herokuapp.com/sendEnemy`, { enemy }).then((res) => {
     console.log(res.data)
   });
 };

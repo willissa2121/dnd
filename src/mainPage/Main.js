@@ -67,7 +67,7 @@ class App extends React.Component {
   };
 
   refreshFeed = () => {
-    axios.post(`${config.prod}/refreshData`).then((res) => {
+    axios.post(`https://dnd-server-api.herokuapp.com/refreshData`).then((res) => {
       this.handleData(res, true);
     });
   };
@@ -75,7 +75,7 @@ class App extends React.Component {
   getRandom = async (val, roller) => {
     let randomVal = Math.floor(Math.random() * val) + 1;
     axios
-      .post(`${config.prod}/sendData`, {
+      .post(`https://dnd-server-api.herokuapp.com/sendData`, {
         val: randomVal,
         roller,
       })

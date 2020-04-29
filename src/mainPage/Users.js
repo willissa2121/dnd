@@ -1,15 +1,16 @@
-import React from "react";
-import Dice from "./Dice";
-import "./Users.css";
+import React from "react"
+import Dice from "./Dice"
+import Modifier from "./Modifier"
+import "./Users.css"
 
 export default function Users(props) {
-  const userDataArray = [];
-  props.data.map((data) => {
+  const userDataArray = []
+  props.data.map(data => {
     if (props.user === data.roller) {
-      const { roller, val, createdAt } = data;
-      userDataArray.push({ roller, val, createdAt });
+      const { roller, val, createdAt } = data
+      userDataArray.push({ roller, val, createdAt })
     }
-  });
+  })
   return (
     <div>
       <p>{props.user}</p>
@@ -18,13 +19,14 @@ export default function Users(props) {
         user={props.user}
         random={props.random}
       ></Dice>
+      <Modifier user={props.user} handleChange={props.handleChange}></Modifier>
 
       <img
         alt="user-pic"
         id="parent-user-group"
         src={require(`../public/images/${props.image}.png`)}
       />
-      {userDataArray.map((data) => (
+      {userDataArray.map(data => (
         <div className="row justify-content-center">
           <p className="col-md-12" id="roll-history">
             <p id="rollVal">{data.roller}: </p>
@@ -33,5 +35,5 @@ export default function Users(props) {
         </div>
       ))}
     </div>
-  );
+  )
 }

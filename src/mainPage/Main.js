@@ -35,6 +35,8 @@ class App extends React.Component {
       updateRoller: true,
       currentModValue: 0,
       currentModClass: "",
+      previousNat20: "",
+      previousNat1: "",
     };
   }
 
@@ -47,7 +49,8 @@ class App extends React.Component {
 
   handleData = (res, saveRecent) => {
     let rollDataArray = [];
-    console.log(res);
+    let previousNat20, previousNat1;
+
     for (var i = res.data.length - 1; i >= 0; i--) {
       const {
         roller,
@@ -67,6 +70,16 @@ class App extends React.Component {
       };
       rollDataArray.push(currentEntryObject);
     }
+
+    for (var t = 0; t < res.data.length; t++) {
+      const { roller, val, maxRoll } = res.data[t];
+      if (val === 1 && maxRoll === 20) {
+        previousNat1 = roller;
+      } else if (val === 20) {
+        previousNat20 = roller;
+      }
+    }
+    console.log(previousNat1, previousNat20);
     const { roller, val, createdAt } = rollDataArray[0];
     let recentRoll = {
       roller,
@@ -83,18 +96,24 @@ class App extends React.Component {
       this.setState((prevState) => ({
         rollDataArray,
         recentRoll,
+        previousNat1,
+        previousNat20,
       }));
     } else {
       this.setState((prevState) => ({
         rollDataArray,
+        previousNat1,
+        previousNat20,
       }));
     }
   };
 
   refreshFeed = () => {
-    axios.post(`https://dnd-server-api.herokuapp.com/refreshData`).then((res) => {
-      this.handleData(res, true);
-    });
+    axios
+      .post(`https://dnd-server-api.herokuapp.com/refreshData`)
+      .then((res) => {
+        this.handleData(res, true);
+      });
   };
 
   getRandom = async (val, roller) => {
@@ -141,6 +160,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header
+          previousNat1={this.state.previousNat1}
+          previousNat20={this.state.previousNat20}
           update={this.state.updateRoller}
           recentRoll={this.state.recentRoll}
         ></Header>

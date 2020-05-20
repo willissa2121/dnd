@@ -1,29 +1,28 @@
 {
   "files": {
-    "main.css": "/dnd/static/css/main.9c433e20.chunk.css",
-    "main.js": "/dnd/static/js/main.99e9017a.chunk.js",
-    "main.js.map": "/dnd/static/js/main.99e9017a.chunk.js.map",
+    "main.css": "/dnd/static/css/main.5e5d18f8.chunk.css",
+    "main.js": "/dnd/static/js/main.a08941fc.chunk.js",
+    "main.js.map": "/dnd/static/js/main.a08941fc.chunk.js.map",
     "runtime-main.js": "/dnd/static/js/runtime-main.b46cc71e.js",
     "runtime-main.js.map": "/dnd/static/js/runtime-main.b46cc71e.js.map",
-    "static/js/2.ea713233.chunk.js": "/dnd/static/js/2.ea713233.chunk.js",
-    "static/js/2.ea713233.chunk.js.map": "/dnd/static/js/2.ea713233.chunk.js.map",
+    "static/js/2.8e1bf0fc.chunk.js": "/dnd/static/js/2.8e1bf0fc.chunk.js",
+    "static/js/2.8e1bf0fc.chunk.js.map": "/dnd/static/js/2.8e1bf0fc.chunk.js.map",
     "index.html": "/dnd/index.html",
-    "precache-manifest.4a0cdbb31b1d9ff1367c68df6dbc37cb.js": "/dnd/precache-manifest.4a0cdbb31b1d9ff1367c68df6dbc37cb.js",
+    "precache-manifest.744cbb7b8b9876df2fc5096386458300.js": "/dnd/precache-manifest.744cbb7b8b9876df2fc5096386458300.js",
     "service-worker.js": "/dnd/service-worker.js",
-    "static/css/main.9c433e20.chunk.css.map": "/dnd/static/css/main.9c433e20.chunk.css.map",
-    "static/js/2.ea713233.chunk.js.LICENSE.txt": "/dnd/static/js/2.ea713233.chunk.js.LICENSE.txt",
-    "static/media/cat.png": "/dnd/static/media/cat.46703135.png",
-    "static/media/cat_old.png": "/dnd/static/media/cat_old.46703135.png",
+    "static/css/main.5e5d18f8.chunk.css.map": "/dnd/static/css/main.5e5d18f8.chunk.css.map",
+    "static/js/2.8e1bf0fc.chunk.js.LICENSE.txt": "/dnd/static/js/2.8e1bf0fc.chunk.js.LICENSE.txt",
+    "static/media/cat.png": "/dnd/static/media/cat.c59c7773.png",
     "static/media/diceSound.mp3": "/dnd/static/media/diceSound.afd53a36.mp3",
-    "static/media/dragon.png": "/dnd/static/media/dragon.19c2bc27.png",
+    "static/media/dragon.png": "/dnd/static/media/dragon.75e1e25b.png",
+    "static/media/dragon_old.png": "/dnd/static/media/dragon_old.19c2bc27.png",
     "static/media/midget.png": "/dnd/static/media/midget.e93a16f5.png",
-    "static/media/necromancer.png": "/dnd/static/media/necromancer.ae6ce689.png",
-    "static/media/necromancer_old.png": "/dnd/static/media/necromancer_old.ae6ce689.png"
+    "static/media/necromancer.png": "/dnd/static/media/necromancer.ae6ce689.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b46cc71e.js",
-    "static/js/2.ea713233.chunk.js",
-    "static/css/main.9c433e20.chunk.css",
-    "static/js/main.99e9017a.chunk.js"
+    "static/js/2.8e1bf0fc.chunk.js",
+    "static/css/main.5e5d18f8.chunk.css",
+    "static/js/main.a08941fc.chunk.js"
   ]
 }

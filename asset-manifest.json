@@ -1,28 +1,29 @@
 {
   "files": {
     "main.css": "/dnd/static/css/main.5e5d18f8.chunk.css",
-    "main.js": "/dnd/static/js/main.c3ee6206.chunk.js",
-    "main.js.map": "/dnd/static/js/main.c3ee6206.chunk.js.map",
+    "main.js": "/dnd/static/js/main.84b825da.chunk.js",
+    "main.js.map": "/dnd/static/js/main.84b825da.chunk.js.map",
     "runtime-main.js": "/dnd/static/js/runtime-main.b46cc71e.js",
     "runtime-main.js.map": "/dnd/static/js/runtime-main.b46cc71e.js.map",
-    "static/js/2.cd05c779.chunk.js": "/dnd/static/js/2.cd05c779.chunk.js",
-    "static/js/2.cd05c779.chunk.js.map": "/dnd/static/js/2.cd05c779.chunk.js.map",
+    "static/js/2.f763de42.chunk.js": "/dnd/static/js/2.f763de42.chunk.js",
+    "static/js/2.f763de42.chunk.js.map": "/dnd/static/js/2.f763de42.chunk.js.map",
     "index.html": "/dnd/index.html",
-    "precache-manifest.8733f72db66826d58d2c44dd002ab40d.js": "/dnd/precache-manifest.8733f72db66826d58d2c44dd002ab40d.js",
+    "precache-manifest.883d90497e77ab7d6493900d37d6fab9.js": "/dnd/precache-manifest.883d90497e77ab7d6493900d37d6fab9.js",
     "service-worker.js": "/dnd/service-worker.js",
     "static/css/main.5e5d18f8.chunk.css.map": "/dnd/static/css/main.5e5d18f8.chunk.css.map",
-    "static/js/2.cd05c779.chunk.js.LICENSE.txt": "/dnd/static/js/2.cd05c779.chunk.js.LICENSE.txt",
+    "static/js/2.f763de42.chunk.js.LICENSE.txt": "/dnd/static/js/2.f763de42.chunk.js.LICENSE.txt",
     "static/media/cat.png": "/dnd/static/media/cat.c59c7773.png",
     "static/media/diceSound.mp3": "/dnd/static/media/diceSound.afd53a36.mp3",
-    "static/media/dragon.png": "/dnd/static/media/dragon.36ff729b.png",
-    "static/media/dragon_old.png": "/dnd/static/media/dragon_old.19c2bc27.png",
+    "static/media/dragon.png": "/dnd/static/media/dragon.75c86b10.png",
+    "static/media/dragon___.png": "/dnd/static/media/dragon___.36ff729b.png",
     "static/media/midget.png": "/dnd/static/media/midget.e93a16f5.png",
-    "static/media/necromancer.png": "/dnd/static/media/necromancer.ae6ce689.png"
+    "static/media/necromancer.png": "/dnd/static/media/necromancer.1fec9581.png",
+    "static/media/necromancer___.png": "/dnd/static/media/necromancer___.ae6ce689.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b46cc71e.js",
-    "static/js/2.cd05c779.chunk.js",
+    "static/js/2.f763de42.chunk.js",
     "static/css/main.5e5d18f8.chunk.css",
-    "static/js/main.c3ee6206.chunk.js"
+    "static/js/main.84b825da.chunk.js"
   ]
 }

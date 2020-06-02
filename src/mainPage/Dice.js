@@ -1,7 +1,7 @@
 import React from "react";
 
-const diceVal = [4, 6, 8, 10, 20];
-const colorVal = ["danger", "warning", "success", "primary", "info"];
+const diceVal = [4, 6, 8, 10, 12, 20];
+const colorVal = ["danger", "warning", "success", "primary", "dark", "info"];
 
 export default function Dice(props) {
 
@@ -13,7 +13,7 @@ export default function Dice(props) {
           className={`btn btn-${colorVal[iteration]} mr-1 ml-1`}
           onClick={() => {
             audio.play().then(val=>{
-              console.log('rolled')
+              //console.log('rolled')
             })
             props.random(val, props.user);
           }}

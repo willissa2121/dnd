@@ -7,20 +7,28 @@ import axios from "axios";
 
 const users = [
   {
-    userName: "Leeshin Liskyn",
+    userName: "BOYBERRY",
     picture: "dragon",
-    stats: { str: 5, dex: 4, con: 3, wis: 3, int: 3, char: 2 },
+    stats: { prof: 2, none: 0 },
+    mods: { STR: 0, DEX: 1, CON: 3, INT: 0, WIS: 3, CHAR: 1, none: 0 },
   },
   {
-    userName: "Rone Dahl",
+    userName: "BJORN",
     picture: "necromancer",
-    stats: { str: 0, dex: 3, con: 2, wis: 2, int: 4, char: 2 },
+    stats: { prof: 2, none: 0 },
+    mods: { STR: 1, DEX: 2, CON: 2, INT: 0, WIS: 4, CHAR: 1, none: 0 },
   },
-  { userName: "IWILLNUT", picture: "midget" },
   {
-    userName: "HercuLATS",
+    userName: "IWILLNUT",
+    picture: "midget",
+    stats: { prof: 3, none: 0 },
+    mods: { STR: 3, DEX: 1, CON: 4, INT: 1, WIS: 1, CHAR: 3, none: 0 },
+  },
+  {
+    userName: "HerMak",
     picture: "cat",
-    stats: { str: 1, dex: 4, con: 1, wis: 1, int: 2, char: 3 },
+    stats: { prof: 2, none: 0 },
+    mods: { STR: 0, DEX: 2, CON: 2, INT: 1, WIS: 2, CHAR: 4, none: 0 },
   },
 ];
 
@@ -33,10 +41,19 @@ class App extends React.Component {
       rollerArray: [],
       recentRoll: {},
       updateRoller: true,
-      currentModValue: 0,
-      currentModClass: "",
+      currentProfValue: 0,
+      modValue: 0,
+      modClass: "none",
       previousNat20: "",
       previousNat1: "",
+      playerHealth: {
+        BOYBERRY: 26,
+        Rone: 25,
+        IWILLNUT: 50,
+        HerMak: 24,
+      },
+
+      updatingHealth: false,
     };
   }
 
@@ -45,27 +62,69 @@ class App extends React.Component {
     setInterval(() => {
       this.refreshFeed();
     }, 200);
+    setInterval(() => {
+      this.refreshHealth();
+    }, 3500);
   }
+
+  handleHealthChange = (e) => {
+    const dupeHealthObject = this.state.playerHealth;
+    dupeHealthObject[e.target.name] = Number(e.target.value);
+    console.log(dupeHealthObject);
+    this.setState({ playerHealth: dupeHealthObject });
+    console.log(this.state.playerHealth);
+  };
+
+  submitHealth = (e) => {
+    console.log(e.target.name, this.state.playerHealth[e.target.name]);
+
+    axios
+      .post("https://dnd-server-api.herokuapp.com/sendHealth", {
+        char: e.target.name,
+        health: this.state.playerHealth[e.target.name],
+      })
+      .then((res) => {
+        let dupeObj = this.state.playerHealth;
+        for (var i = 0; i < res.data.length; i++) {
+          dupeObj[res.data[i]] = res.data[i].health;
+        }
+        this.setState({ playerHealth: dupeObj });
+      });
+  };
+
+  refreshHealth = () => {
+    axios
+      .post("https://dnd-server-api.herokuapp.com/refreshHealth")
+      .then((data) => {
+        let dupeObj = this.state.playerHealth;
+        console.log(data.data);
+        for (var i = 0; i < data.data.length; i++) {
+          dupeObj[data.data[i].char] = data.data[i].health;
+        }
+        this.setState({ playerHealth: dupeObj });
+      });
+  };
 
   handleData = (res, saveRecent) => {
     let rollDataArray = [];
     let previousNat20, previousNat1;
-
     for (var i = res.data.length - 1; i >= 0; i--) {
       const {
         roller,
         val,
         maxRoll,
-        modifierValue,
-        modifierClass,
+        profValue,
+        modValue,
+        modClass,
         createdAt,
       } = res.data[i];
       let currentEntryObject = {
         roller,
         val,
         maxRoll,
-        modifierClass,
-        modifierValue,
+        profValue,
+        modValue,
+        modClass,
         createdAt,
       };
       rollDataArray.push(currentEntryObject);
@@ -79,7 +138,6 @@ class App extends React.Component {
         previousNat20 = roller;
       }
     }
-    console.log(previousNat1, previousNat20);
     const { roller, val, createdAt } = rollDataArray[0];
     let recentRoll = {
       roller,
@@ -124,8 +182,9 @@ class App extends React.Component {
         val: randomVal,
         roller,
         maxRoll,
-        modifierValue: this.state.currentModValue,
-        modifierClass: this.state.currentModClass,
+        profValue: this.state.currentProfValue,
+        modValue: this.state.modValue,
+        modClass: this.state.modClass,
       })
       .then((res) => {
         this.handleData(res, false);
@@ -134,26 +193,25 @@ class App extends React.Component {
 
   handleChange = (event) => {
     let val = event.target.value;
-    let [userWithMod, modifierClass] = val.split(":");
+    let [userWithProf, profValue] = val.split(":");
 
     users.map((user) => {
-      if (user.userName === userWithMod) {
-        if (modifierClass === 0) {
-          this.setState({
-            currentModValue: 0,
-            currentModClass: "none",
-          });
-        } else {
-          let modifierValue = user.stats[modifierClass];
-          this.setState({
-            currentModValue: modifierValue,
-            currentModClass: modifierClass,
-          });
-        }
+      if (user.userName === userWithProf) {
+        let modifierValue = user.stats[profValue];
+        this.setState({
+          currentProfValue: modifierValue,
+        });
       }
     });
+  };
 
-    console.log(this.state.currentModClass, this.state.currentModValue);
+  handleModChange = (e) => {
+    const [currentUser, modClass] = e.target.value.split(":");
+    users.map((user) => {
+      if (currentUser === user.userName) {
+        this.setState({ modValue: user.mods[modClass], modClass });
+      }
+    });
   };
 
   render() {
@@ -170,11 +228,17 @@ class App extends React.Component {
             {users.map((user) => (
               <div className="col-md-3">
                 <Users
+                  submitHealth={this.submitHealth}
+                  playerHealth={this.state.playerHealth}
+                  handleHealthChange={this.handleHealthChange}
+                  handleModChange={this.handleModChange}
                   handleChange={this.handleChange}
                   data={this.state.rollDataArray}
                   random={this.getRandom}
                   image={user.picture}
                   user={user.userName}
+                  updatingHealth={this.state.updatingHealth}
+                  updateHealth={this.updateHealth}
                 ></Users>
               </div>
             ))}

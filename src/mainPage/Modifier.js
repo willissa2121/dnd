@@ -1,79 +1,19 @@
-import React from "react"
-import "./modifier.css"
-
+import React from "react";
+const modArray = ["STR", "DEX", "CON", "WIS", "INT", "CHAR"];
 export default function Modifier(props) {
   return (
-    <div>
-      <form action="/action_page.php" method="get">
-        <label for="strength">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:str`}
-            onChange={props.handleChange}
-          />{" "}
-          Str
-        </label>
-
-        <label for="dexterity">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:dex`}
-            onChange={props.handleChange}
-          />{" "}
-          Dex
-        </label>
-
-        <label for="constitution">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:con`}
-            onChange={props.handleChange}
-          />{" "}
-          Con
-        </label>
-
-        <label for="intelligence">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:int`}
-            onChange={props.handleChange}
-          />{" "}
-          Int
-        </label>
-
-        <label for="wisdom">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:wis`}
-            onChange={props.handleChange}
-          />{" "}
-          Wis
-        </label>
-
-        <label for="charisma">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:char`}
-            onChange={props.handleChange}
-          />
-          Char
-        </label>
-        <label for="none">
-          <input
-            type="radio"
-            name="radio"
-            value={`${props.user}:0`}
-            onChange={props.handleChange}
-          />
-          None
-        </label>
+    <div >
+      <form class="form-inline">
+        <select onClick={props.handleModChange}
+          class="custom-select my-1 mr-sm-2"
+          id="inlineFormCustomSelectPref"
+        >
+          <option value={`${props.user}:none`}  selected>None</option>
+          {modArray.map((mod) => (
+            <option  value={`${props.user}:${mod}`}>{mod}</option>
+          ))}
+        </select>
       </form>
     </div>
-  )
+  );
 }

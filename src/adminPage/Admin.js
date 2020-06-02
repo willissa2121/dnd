@@ -5,7 +5,7 @@ const enemyList = ["demon", "devil", "boss"];
 
 const sendEnemy = (enemy) => {
   axios.post(`https://dnd-server-api.herokuapp.com/sendEnemy`, { enemy }).then((res) => {
-    console.log(res.data)
+    //console.log(res.data)
   });
 };
 

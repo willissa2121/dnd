@@ -8,8 +8,23 @@
   max-height: 100%;
 }
 
-span{
+span {
   font-weight: 500;
   color: blue;
   font-size: 24px;
+}
+
+.save {
+  pointer-events: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
